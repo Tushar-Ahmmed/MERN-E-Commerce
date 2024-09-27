@@ -1,0 +1,18 @@
+{
+  "name": "MERN_E_Commerce",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tushar",
+  "license": "MIT",
+  "type": "module",
+  "start": "nodemon app.js",
+  "dependencies": {
+    "eslint": "^9.11.1",
+    "express": "^4.21.0",
+    "hpp": "^0.2.3",
+    "jwt": "^0.2.0",
+    "mongoose": "^8.6.4",
+    "nodemailer": "^6.9.15",
+    "nodemon": "^3.1.7"
+  }
+}
