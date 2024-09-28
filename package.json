@@ -1,18 +1,27 @@
 {
   "name": "MERN_E_Commerce",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "author": "Tushar",
   "license": "MIT",
   "type": "module",
-  "start": "nodemon app.js",
   "dependencies": {
-    "eslint": "^9.11.1",
+    "cors": "^2.8.5",
     "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
     "hpp": "^0.2.3",
     "jwt": "^0.2.0",
     "mongoose": "^8.6.4",
     "nodemailer": "^6.9.15",
     "nodemon": "^3.1.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.11.1",
+    "eslint": "^9.11.1",
+    "globals": "^15.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   }
 }
