@@ -24,7 +24,7 @@ router.get('/readUserProfile',usersController.readUserProfile)
 router.get("/brandList",brandsController.brandList)
 
 // category Controller
-router.get("/categoryLisy",categoriesController.categoryLisy)
+router.get("/categoryList",categoriesController.categoryList)
 
 // cart Controller
 router.post("/createCart",cartsController.createCart)
@@ -42,12 +42,14 @@ router.post("/removeWish",wishesController.removeWish)
 
 //Producr Controller
 router.get("/productListBySlider",productsController.productListBySlider)
-router.get("/productListByCategory",productsController.productListByCategory)
-router.get("/productListByRemark",productsController.productListByRemark)
-router.get("/productListByBrand",productsController.productListByBrand)
-router.get("/productDetailsID",productsController.productDetailsID)
-router.get("/productDetailsByKeyword",productsController.productDetailsByKeyword)
-router.get("/productReviewListByID",productsController.productReviewListByID)
+router.get("/productListByBrand/:brandID",productsController.productListByBrand)
+router.get("/productListByCategory/:categoryID",productsController.productListByCategory)
+router.get("/productListByRemark/:remark",productsController.productListByRemark)
+router.get("/productDetailsID/:productID",productsController.productDetailsID)
+router.get("/productDetailsByKeyword/:keyword",productsController.productDetailsByKeyword)
+
+router.get("/productReviewListByID/:id",productsController.productReviewListByID)
+
 router.post("/createPductReview",productsController.createPductReview)
 
 // Invoice Controller

@@ -1,29 +1,65 @@
+import { detailsByIDService, detailsByKeywordService, listByBrandService, listByCategoryService, listByRemarkService, productReviewListByIDService, sliderListService } from "../services/productServices.js"
+
 export const productListBySlider = async(req, res)=>{
-    return res.json({"status":"Success","message":"Product List By Slider success"})
+   
+    const result = await sliderListService()
+    return res.json(result)
+
+
 }
 
-export const productListByCategory = async(req, res)=>{
-    return res.json({"status":"Success","message":"Product List By Category success"})
-}
 
-export const productListByRemark = async(req, res)=>{
-    return res.json({"status":"Success","message":"Product List By Remark success"})
-}
+
 
 export const productListByBrand = async(req, res)=>{
-    return res.json({"status":"Success","message":"Product List By Brand success"})
+    const result = await listByBrandService(req)
+    return res.json(result)
 }
+
+
+
+
+
+
+export const productListByCategory = async(req, res)=>{
+    const result = await listByCategoryService(req)
+    return res.json(result)
+}
+
+
+
+
+export const productListByRemark = async(req, res)=>{
+    const result = await listByRemarkService(req)
+    return res.json(result)
+}
+
+
+
+
+
+
+
 
 export const productDetailsID = async(req, res)=>{
-    return res.json({"status":"Success","message":"ProductDetails By ID success"})
+    const result = await detailsByIDService(req)
+    return res.json(result)
 }
+
+
 
 export const productDetailsByKeyword = async(req, res)=>{
-    return res.json({"status":"Success","message":"Product Details By Keyword success"})
+    const result = await detailsByKeywordService(req)
+    return res.json(result)
 }
 
+
+
+
+
 export const productReviewListByID = async(req, res)=>{
-    return res.json({"status":"Success","message":"Product Review List By ID success"})
+    const result = await productReviewListByIDService(req)
+    return res.json(result)
 }
 
 export const createPductReview = async(req, res)=>{

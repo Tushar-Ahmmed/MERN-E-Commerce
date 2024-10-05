@@ -1,6 +1,10 @@
+import { brandListService } from "../services/productServices.js"
+
+
 
 export const brandList = async(req, res)=>{
 
-    return res.json({"status":"Success","message":"Brand List..."})
+    const result = await brandListService()
+    return res.json(result)
     
 }
