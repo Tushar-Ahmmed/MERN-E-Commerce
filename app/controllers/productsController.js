@@ -63,5 +63,6 @@ export const productReviewListByID = async(req, res)=>{
 }
 
 export const createPductReview = async(req, res)=>{
-    return res.json({"status":"Success","message":"Product Review Creation success"})
+    const result = await productReviewListByIDService(req)
+    return res.json(result)
 }

@@ -6,6 +6,7 @@ import * as cartsController from "../app/controllers/catrsController.js"
 import * as wishesController from "../app/controllers/wishesController.js"
 import * as productsController from "../app/controllers/productsController.js"
 import * as invoicesController from "../app/controllers/invoicesController.js"
+import { userAuthentication } from "../app/middleware/authMiddleWare.js"
 
 
 
@@ -15,10 +16,10 @@ const router = express.Router()
 
 // user Routes
 router.post('/login',usersController.login)
-router.post('/verifyLogin',usersController.verifyLogin)
-router.post('/createUserProfile',usersController.createUserProfile)
-router.get('/updateUserProfile',usersController.updateUserProfile)
-router.get('/readUserProfile',usersController.readUserProfile)
+router.post('/verifyLogin/:otp',usersController.verifyLogin)
+router.post('/createUserProfile', userAuthentication, usersController.createUserProfile)
+router.post('/updateUserProfile',usersController.updateUserProfile)
+router.get('/readUserProfile', userAuthentication, usersController.readUserProfile)
 
 // brand Routes
 router.get("/brandList",brandsController.brandList)
@@ -47,8 +48,8 @@ router.get("/productListByCategory/:categoryID",productsController.productListBy
 router.get("/productListByRemark/:remark",productsController.productListByRemark)
 router.get("/productDetailsID/:productID",productsController.productDetailsID)
 router.get("/productDetailsByKeyword/:keyword",productsController.productDetailsByKeyword)
-
 router.get("/productReviewListByID/:id",productsController.productReviewListByID)
+
 
 router.post("/createPductReview",productsController.createPductReview)
 

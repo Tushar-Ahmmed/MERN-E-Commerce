@@ -272,35 +272,31 @@ export const detailsByKeywordService = async (req)=>{
 export const productReviewListByIDService = async (req)=>{
     try {
         const productID = new mongoose.Types.ObjectId(req.params.id)
-        console.log(productID);
         
-
        const matchStage = {
         $match:{
             "productID":productID
         }
     }
-        const productLookup = { $lookup: { from: "products", localField: "productID", foreignField: "_id", as: "Product"}}
+        const userLookup = { $lookup: { from: "users", localField: "userID", foreignField: "_id", as: "User"}}
+        const productLookup = {$lookup: { from: "products", localField: "productID", foreignField: "_id", as: "Product"}}
+       
 
-        const categoryLookup = { $lookup: { from: "categories", localField: "categoryID", foreignField: "_id", as: "Category" }}
+        const projectStage = {$project: {"Product.title":1,"rating":1, "User.email":1,"_id":0 } }
 
-        const projectStage = {$project: {"_id":0,"Product._id":0, "Product.discount":0, "Product.discountPrice":0,"Product.remark":0} }
-
+        const userUnwindStage =     {$unwind:"$User"}
         const productUnwindStage =     {$unwind:"$Product"}
-        const categoryUnwindStage =  {$unwind:"$Category"}
+       
 
 
         const data = await reviewModel.aggregate([
 
             matchStage,
+            userLookup,
             productLookup,
+            userUnwindStage,
             productUnwindStage,
             projectStage
-            // brandLookup,
-            // categoryLookup,
-            // projectStage,
-            // brandUnwindStage,
-            // categoryUnwindStage
         ])
         if(data.length > 0){
             return {"status":"Success", "data":data}
@@ -312,4 +308,17 @@ export const productReviewListByIDService = async (req)=>{
     } catch (error) {
         return {"status":"Failed", "data":error.toString()}
     }
+}
+
+
+
+export const reviewCreateService = async (req)=>{
+    try {
+        const reqBody = req.body
+        reviewModel.create(reqBody)
+        return {"status":"Success", "data":reqBody}
+    } catch (error) {
+        return {"status":"Failed", "data":error.toString()}
+    }
+    // deri hobe karon user authentication dorkar ache. user ID auto nibe head theke..
 }

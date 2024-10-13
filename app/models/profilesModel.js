@@ -26,3 +26,4 @@ const profileSchema = mongoose.Schema(
 )
 
 const profileModel = mongoose.model("profiles",profileSchema)
+export default profileModel
